@@ -357,8 +357,20 @@ $('inventoryButton').onclick = () => {
 $('closeInventory').onclick = () => {
     $('inventory').hidden = true;
 };
+const compactQuest = matchMedia('(max-width: 900px)');
+function resetQuestLayout() {
+    $('quest').hidden = false;
+    $('quest').classList.remove('expanded');
+    $('journalButton').setAttribute('aria-expanded', String(!compactQuest.matches));
+}
+$('journalButton').setAttribute('aria-controls', 'quest');
+resetQuestLayout();
+compactQuest.addEventListener('change', resetQuestLayout);
 $('journalButton').onclick = () => {
-    $('quest').hidden = !$('quest').hidden;
+    const expanded = compactQuest.matches
+        ? $('quest').classList.toggle('expanded')
+        : !($('quest').hidden = !$('quest').hidden);
+    $('journalButton').setAttribute('aria-expanded', String(expanded));
 };
 // 이동과 Space는 누른 상태를 매 프레임 읽습니다. Q/1 등은 최초 입력만 처리합니다.
 function handleKeyDown(event) {

@@ -434,8 +434,19 @@ footer {
         gap: 22px;
     }
     .quest {
-        width: 230px;
-        right: 15px;
+        width: 210px;
+        right: 12px;
+        top: 12px;
+        padding: 12px;
+    }
+    .quest:not(.expanded) > :not(.objective) {
+        display: none;
+    }
+    .quest .objective {
+        margin-top: 0;
+    }
+    .quest.expanded .objective {
+        margin-top: 16px;
     }
     .location {
         left: 20px;
@@ -467,9 +478,15 @@ footer {
         display: none;
     }
     .quest {
-        top: 120px;
-        width: 200px;
-        padding: 12px;
+        left: 12px;
+        right: 12px;
+        width: auto;
+    }
+    .location {
+        top: 70px;
+    }
+    .quest.expanded {
+        z-index: 2;
     }
     .resource>div:not(.orb) {
         display: none;

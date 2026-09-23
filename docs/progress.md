@@ -1,5 +1,10 @@
 # Development evidence · 2026-09-23
 
+## Compact mobile quest
+- At widths up to 900px, show only the kill objective by default. The quest button expands/collapses details and exposes its state via aria-expanded; desktop keeps the full panel and hide/show toggle.
+- At phone widths, the objective is a short top strip with the location title below it. Viewport changes reset the appropriate layout.
+- Chrome at 390×844 verified the collapsed panel is under 55px tall, touch expand/collapse works, and desktop resizing/toggling works. `npm run verify` passed all 10 tests, harness and build.
+
 ## Original fire, grounded attacks and startup loading
 - Integrated user-supplied Fire (Large): three transparent atlases, 60 frames; source, uploader, URL and hash preserved. Validated every frame is nonempty and no opaque magenta/teal background remains.
 - Kept cached rendering; local forced-readback render median was 13.1 ms with original flames. No per-frame blur was reintroduced.
