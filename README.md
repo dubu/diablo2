@@ -2,6 +2,8 @@
 
 Diablo II 에셋 카탈로그를 참고한 브라우저 액션 RPG 프로토타입과 Codex 반복 개발 하네스.
 
+게임 실행: https://dubu.github.io/diablo2/
+
 ## 실행
 
 Node.js 22 이상. 외부 패키지 설치 없이 실행합니다.
@@ -41,7 +43,7 @@ npm run verify
 npm run preview
 ```
 
-배포 파일은 `dist/`에 생성되고 미리보기는 http://127.0.0.1:5173/diablo2/ 에서 실행됩니다. 저장소 Settings → Pages → Source를 **GitHub Actions**로 설정하면 main push 시 검증 후 배포합니다. PR은 검증만 수행합니다. 실제 저장소 연결은 아직 하지 않았습니다.
+배포 파일은 `dist/`에 생성되고 미리보기는 http://127.0.0.1:5173/diablo2/ 에서 실행됩니다. 공개 저장소 `dubu/diablo2`의 Pages는 **GitHub Actions**로 설정되어 main push 시 검증 후 배포합니다. PR은 검증만 수행합니다.
 
 자세한 최초 설정과 복구 절차: [docs/deployment.md](docs/deployment.md).
 

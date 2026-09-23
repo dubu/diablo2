@@ -1,5 +1,12 @@
 # Development evidence · 2026-09-23
 
+## Public GitHub Pages release
+- Pushed initial commit `9b7fcf8` to `dubu/diablo2` main. Changed the repository from private to public with explicit user approval because the current plan rejected Pages on the private repository.
+- Enabled workflow-based Pages. Build and deployment succeeded: https://github.com/dubu/diablo2/actions/runs/35871064855
+- Live game: https://dubu.github.io/diablo2/
+- All 22 checked deployed HTML, source, catalog and sprite files returned HTTP 200 and matched the local build's SHA-256 hashes.
+- CI ran the 9 tests, deterministic combat harness and static build successfully. Browser rendering and interactive controls were not rechecked during deployment.
+
 ## Local workspace setup from archive
 - Imported `/Users/dubu/Downloads/diablo2.zip` into `/Users/dubu/workspace/diablo2`, preserving the existing `.git` directory and excluding macOS archive metadata.
 - Node v22.22.3 and npm 10.9.8 are available; no external package installation is required.
