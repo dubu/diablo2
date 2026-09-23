@@ -1,0 +1,19 @@
+{
+  "name": "diablo2-prototype",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/server.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node scripts/check.mjs",
+    "harness": "node scripts/harness.mjs",
+    "codex:task": "node scripts/codex-task.mjs",
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/server.mjs --dist --base=/diablo2/",
+    "verify": "npm run check && npm run harness && npm run build"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

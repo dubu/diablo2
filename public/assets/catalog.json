@@ -1,0 +1,52 @@
+{
+  "reference": "https://www.spriters-resource.com/pc_computer/diablo2diablo2lordofdestruction/",
+  "checked": "2026-09-23",
+  "rendering": "original-sprite-atlases-with-procedural-scenery",
+  "entries": [
+    {
+      "id": "barbarian",
+      "catalogName": "Barbarian (Heavy)",
+      "source": "https://www.spriters-resource.com/pc_computer/diablo2diablo2lordofdestruction/asset/54293/",
+      "credit": "napalm22",
+      "status": "downloaded-and-integrated",
+      "sourceFile": "assets/source/barbarian.gif",
+      "sha256": "e5579401bbb02ad449cccc2f73e4eb564411434f58920391b70377963f4518c5"
+    },
+    {
+      "id": "fallen",
+      "catalogName": "Fallen Shaman",
+      "source": "https://www.spriters-resource.com/pc_computer/diablo2diablo2lordofdestruction/asset/54314/",
+      "credit": "napalm22; contributor sutinoer",
+      "status": "downloaded-and-integrated",
+      "sourceFile": "assets/source/fallen.png",
+      "sha256": "d454aa6a80fb2d1f92770868cb95d963ffd65e1636fc00f15369331b53ac6780"
+    },
+    {
+      "id": "skeleton",
+      "catalogName": "Skeleton with Bow",
+      "source": "https://www.spriters-resource.com/pc_computer/diablo2diablo2lordofdestruction/asset/92815/",
+      "credit": "sutinoer",
+      "status": "downloaded-and-integrated",
+      "sourceFile": "assets/source/skeleton.png",
+      "sha256": "01a42d84d0b00ada5fd63016910389b7661c3acaf95a06edb53d552452223b56"
+    },
+    {
+      "id": "smith",
+      "catalogName": "The Smith",
+      "source": "https://www.spriters-resource.com/pc_computer/diablo2diablo2lordofdestruction/asset/62943/",
+      "credit": "sutinoer",
+      "status": "downloaded-and-integrated",
+      "sourceFile": "assets/source/smith.png",
+      "sha256": "197a574a31116832bcbe7acb50d9b476a8d5011d6e8a27f0c4534cede046ca31"
+    },
+    {
+      "id": "monastery",
+      "catalogName": "Monastery Floor",
+      "source": "https://www.spriters-resource.com/pc_computer/diablo2diablo2lordofdestruction/asset/56283/",
+      "credit": "sutinoer",
+      "status": "downloaded-and-integrated",
+      "sourceFile": "assets/source/monastery.png",
+      "sha256": "b4903080180e98c3a7531a33494617546623a5d4cb1a3557490c96c74da65a5d"
+    }
+  ]
+}

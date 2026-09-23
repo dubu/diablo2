@@ -1,0 +1,136 @@
+{
+  "barbarian": {
+    "walk": {
+      "file": "barbarian-walk.png",
+      "width": 88,
+      "height": 99,
+      "frames": 8,
+      "directions": 16,
+      "anchorX": 44.0,
+      "anchorY": 94
+    },
+    "idle": {
+      "file": "barbarian-idle.png",
+      "width": 78,
+      "height": 99,
+      "frames": 16,
+      "directions": 16,
+      "anchorX": 39.0,
+      "anchorY": 94
+    },
+    "attack": {
+      "file": "barbarian-attack.png",
+      "width": 182,
+      "height": 142,
+      "frames": 16,
+      "directions": 16,
+      "anchorX": 91.0,
+      "anchorY": 137
+    }
+  },
+  "fallen": {
+    "walk": {
+      "file": "fallen-walk.png",
+      "width": 123,
+      "height": 111,
+      "frames": 14,
+      "directions": 8,
+      "anchorX": 61.5,
+      "anchorY": 106
+    },
+    "idle": {
+      "file": "fallen-idle.png",
+      "width": 123,
+      "height": 111,
+      "frames": 1,
+      "directions": 8,
+      "anchorX": 61.5,
+      "anchorY": 106
+    },
+    "attack": {
+      "file": "fallen-attack.png",
+      "width": 115,
+      "height": 95,
+      "frames": 17,
+      "directions": 8,
+      "anchorX": 57.5,
+      "anchorY": 90
+    },
+    "death": {
+      "file": "fallen-death.png",
+      "width": 152,
+      "height": 117,
+      "frames": 21,
+      "directions": 8,
+      "anchorX": 76.0,
+      "anchorY": 112
+    }
+  },
+  "smith": {
+    "idle": {
+      "file": "smith-idle.png",
+      "width": 83,
+      "height": 106,
+      "frames": 12,
+      "directions": 8,
+      "anchorX": 41.5,
+      "anchorY": 101
+    },
+    "walk": {
+      "file": "smith-walk.png",
+      "width": 97,
+      "height": 106,
+      "frames": 12,
+      "directions": 8,
+      "anchorX": 48.5,
+      "anchorY": 101
+    },
+    "attack": {
+      "file": "smith-attack.png",
+      "width": 157,
+      "height": 150,
+      "frames": 14,
+      "directions": 8,
+      "anchorX": 78.5,
+      "anchorY": 145
+    }
+  },
+  "skeleton": {
+    "walk": {
+      "file": "skeleton-walk.png",
+      "width": 81,
+      "height": 91,
+      "frames": 11,
+      "directions": 8,
+      "anchorX": 40.5,
+      "anchorY": 86
+    },
+    "idle": {
+      "file": "skeleton-idle.png",
+      "width": 79,
+      "height": 90,
+      "frames": 16,
+      "directions": 8,
+      "anchorX": 39.5,
+      "anchorY": 85
+    },
+    "attack": {
+      "file": "skeleton-attack.png",
+      "width": 96,
+      "height": 94,
+      "frames": 22,
+      "directions": 8,
+      "anchorX": 48.0,
+      "anchorY": 89
+    },
+    "death": {
+      "file": "skeleton-death.png",
+      "width": 120,
+      "height": 112,
+      "frames": 11,
+      "directions": 8,
+      "anchorX": 60.0,
+      "anchorY": 107
+    }
+  }
+}

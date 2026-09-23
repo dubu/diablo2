@@ -1,0 +1,483 @@
+/* 공통 테마 → 상단 메뉴 → 게임 화면 → HUD → 반응형 배치 순서입니다. */
+:root {
+    color-scheme: dark;
+    --gold: #ba9a60;
+    --line: #413a2d;
+    --muted: #888478;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #101210;
+    color: #d4c9b5;
+    font: 13px Georgia,'Noto Serif KR',serif;
+}
+
+button,a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    background: #22231e;
+    border: 1px solid var(--line);
+    padding: 10px 16px;
+}
+
+button:hover {
+    border-color: var(--gold);
+    color: #f0d69e;
+}
+
+button:focus-visible,canvas:focus-visible {
+    outline: 2px solid var(--gold);
+}
+
+header {
+    height: 78px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    padding: 0 34px;
+    gap: 19px;
+    background: #151714;
+}
+
+.brand {
+    font-size: 44px;
+    color: var(--gold);
+    text-decoration: none;
+    letter-spacing: -10px;
+    width: 46px;
+}
+
+.brand span {
+    font-size: 25px;
+}
+
+.brandtext {
+    font-size: 19px;
+    letter-spacing: 4px;
+}
+
+.brandtext small {
+    display: block;
+    font: 8px Arial;
+    letter-spacing: 2.4px;
+    color: var(--muted);
+    margin-top: 7px;
+}
+
+nav {
+    display: flex;
+    gap: 9px;
+    margin-left: auto;
+}
+
+nav button {
+    border: 0;
+    background: none;
+    font-size: 12px;
+}
+
+kbd {
+    font: 9px Arial;
+    color: #a6a393;
+    border: 1px solid #48473d;
+    border-radius: 2px;
+    padding: 3px 5px;
+    margin-left: 8px;
+}
+
+.build {
+    font: 9px Arial;
+    letter-spacing: 1.6px;
+    color: #819078;
+    margin-left: 26px;
+}
+
+main {
+    height: calc(100vh - 223px);
+    min-height: 430px;
+    position: relative;
+    overflow: hidden;
+    background: #181d17;
+}
+
+canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    outline: none;
+}
+
+.location {
+    position: absolute;
+    top: 32px;
+    left: 38px;
+    pointer-events: none;
+}
+
+.location>span,.eyebrow {
+    font: 9px Arial;
+    letter-spacing: 2px;
+    color: var(--gold);
+}
+
+h1 {
+    font-size: 31px;
+    letter-spacing: 5px;
+    font-weight: 400;
+    margin: 12px 0;
+}
+
+.location p {
+    color: #929385;
+    font-size: 11px;
+}
+
+.quest {
+    position: absolute;
+    right: 30px;
+    top: 29px;
+    width: 266px;
+    padding: 21px;
+    background: linear-gradient(120deg,#191d18ed,#151812cc);
+    border: 1px solid #4b4736;
+    border-top: 2px solid #9c804d;
+    pointer-events: none;
+}
+
+.eyebrow span {
+    float: right;
+}
+
+h2 {
+    font-size: 18px;
+    font-weight: 400;
+    margin: 17px 0 11px;
+}
+
+.quest p {
+    font-size: 11px;
+    color: #929386;
+}
+
+.objective {
+    font-size: 11px;
+    margin-top: 23px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.objective i {
+    width: 5px;
+    height: 5px;
+    background: var(--gold);
+    transform: rotate(45deg);
+}
+
+.objective b {
+    font: 11px Arial;
+    margin-left: auto;
+    color: var(--gold);
+}
+
+.progress,.xp {
+    height: 3px;
+    background: #393b2d;
+    margin: 12px 0;
+}
+
+.progress i,.xp i {
+    display: block;
+    background: #aa8b51;
+    height: 100%;
+    width: 0;
+}
+
+.quest small {
+    font-size: 10px;
+    color: #716f62;
+}
+
+.area {
+    position: absolute;
+    bottom: 28px;
+    left: 34px;
+    font-size: 13px;
+}
+
+.area>span {
+    color: var(--gold);
+    margin-right: 10px;
+}
+
+.area small {
+    display: block;
+    margin: 9px 0 0 28px;
+    font-size: 10px;
+    color: #8b8c7c;
+}
+
+#toast {
+    position: absolute;
+    bottom: 27px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #dbc18a;
+    text-shadow: 0 2px 5px #000;
+}
+
+footer {
+    height: 111px;
+    background: linear-gradient(#24251e,#11140f);
+    border-top: 3px double #66583d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 42px;
+}
+
+.resource {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.resource small,.wealth small {
+    display: block;
+    color: #9b8b6f;
+    font: 9px Arial;
+    letter-spacing: 2px;
+    margin-bottom: 7px;
+}
+
+.resource strong {
+    font: 12px Georgia;
+}
+
+.orb {
+    width: 78px;
+    height: 78px;
+    border: 5px ridge #645c49;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    background: #160f10;
+    box-shadow: 0 0 0 3px #12130e,0 0 0 4px #514b38;
+}
+
+.orb>div {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 35% 25%,#dd574b,#8b191d 53%,#320c10);
+}
+
+.orb:after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    box-shadow: inset -8px -7px 15px #000a,inset 6px 5px 8px #ffe5c32a;
+}
+
+.mana>div {
+    background: radial-gradient(circle at 35% 25%,#629ebd,#254978 53%,#10203d);
+}
+
+.character {
+    width: 100px;
+}
+
+.character span {
+    font-size: 15px;
+}
+
+.character small {
+    font: 9px Arial;
+    color: #8e846c;
+    display: block;
+    margin-top: 7px;
+}
+
+.skills {
+    display: flex;
+    gap: 8px;
+}
+
+.skills button {
+    position: relative;
+    width: 74px;
+    height: 77px;
+    padding: 4px;
+    background: linear-gradient(135deg,#36372c,#181b15);
+}
+
+.skills kbd {
+    position: absolute;
+    left: 4px;
+    top: 5px;
+    margin: 0;
+    font-size: 7px;
+}
+
+.skills button>span {
+    display: block;
+    font-size: 31px;
+    color: #b39966;
+    line-height: 48px;
+    padding-top: 5px;
+}
+
+.skills button:nth-child(2)>span {
+    color: #ce7944;
+}
+
+.skills button:nth-child(3)>span {
+    color: #b65448;
+}
+
+.skills small {
+    font-size: 9px;
+    color: #a39d89;
+}
+
+.wealth {
+    min-width: 55px;
+}
+
+.wealth strong {
+    color: var(--gold);
+    font-weight: 400;
+}
+
+.controls {
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    color: #777e6e;
+    font: 10px Arial;
+}
+
+.controls kbd {
+    margin: 0 5px 0 0;
+    font-size: 8px;
+}
+
+.asset-note {
+    margin-left: 35px;
+    font-size: 9px;
+    color: #656b60;
+}
+
+.panel {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    width: 300px;
+    background: #191b16f5;
+    border: 1px solid #86714d;
+    padding: 24px;
+    z-index: 3;
+    line-height: 1.8;
+}
+
+.panel p {
+    font-size: 12px;
+    color: #a19b89;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: #090d0bcc;
+    display: grid;
+    place-items: center;
+    z-index: 4;
+    text-align: center;
+}
+
+.overlay h2 {
+    font-size: 38px;
+}
+
+.overlay p {
+    margin-bottom: 28px;
+    color: #a69f8c;
+}
+
+[hidden] {
+    display: none!important;
+}
+
+@media(max-width:900px) {
+    header {
+        padding: 0 16px;
+    }
+    .build,.brandtext small,.character,.wealth,.asset-note {
+        display: none;
+    }
+    footer {
+        gap: 22px;
+    }
+    .quest {
+        width: 230px;
+        right: 15px;
+    }
+    .location {
+        left: 20px;
+    }
+    .controls {
+        gap: 9px;
+    }
+    .resource {
+        gap: 8px;
+    }
+    .orb {
+        width: 62px;
+        height: 62px;
+    }
+    .skills button {
+        width: 62px;
+    }
+}
+
+@media(max-width:600px) {
+    .brandtext {
+        font-size: 12px;
+        letter-spacing: 2px;
+    }
+    nav button {
+        padding: 6px;
+    }
+    nav kbd {
+        display: none;
+    }
+    .quest {
+        top: 120px;
+        width: 200px;
+        padding: 12px;
+    }
+    .resource>div:not(.orb) {
+        display: none;
+    }
+    footer {
+        gap: 17px;
+    }
+    .controls span:nth-child(2) {
+        display: none;
+    }
+}
