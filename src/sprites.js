@@ -41,6 +41,9 @@ export async function loadSprites() {
             ),
         );
         spriteAssets.floor = await loadImage(new URL('monastery.png', ASSET_BASE_URL));
+        // CSS 배경 이미지도 미리 준비해 시작 시 구슬 레이어가 뒤늦게 나타나지 않게 합니다.
+        await Promise.all(['base', 'empty', 'glass', 'shadow', 'border', 'health', 'mana'].map(name =>
+            loadImage(new URL(`../ui/orb-${name}.png`, ASSET_BASE_URL))));
         spriteAssets.ready = true;
     } catch (error) {
         // 호출자는 오류를 HUD에 표시하고 임시 도형 렌더링을 유지합니다.

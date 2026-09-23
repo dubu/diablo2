@@ -1,5 +1,11 @@
 # Integrated Diablo II assets
 
+## Health and mana UI (separate CC0 artwork)
+
+The resource orbs use **Health Orb / Health Orb 1.1 by itsmars**, https://opengameart.org/node/65078, licensed CC0 (https://creativecommons.org/publicdomain/zero/1.0/). These are not original Diablo II assets. The user supplied the 1.1 archive; the base archive was downloaded from the same author page to obtain the liquid/glass layers.
+
+Original archives are preserved in `assets/source/orbs/`, with hashes recorded in `public/assets/catalog.json`. `python3 scripts/prepare-orbs.py` copies the original pedestal, empty bowl, glass, shadow and dark border, and tints the grayscale fill red/blue. Seven output PNG layers live in `public/assets/ui/`. CSS clips the liquid by resource percentage without resizing the image; all layers are preloaded before leaving the loading screen.
+
 Source catalog: https://www.spriters-resource.com/pc_computer/diablo2diablo2lordofdestruction/
 Retrieved 2026-09-23. HTTP clients returned 403, but the browser completed its automatic site verification and loaded the real asset pages. The browser's asset export downloaded the original sheets. No proxy settings were changed.
 

@@ -1,5 +1,11 @@
 # Development evidence · 2026-09-23
 
+## Textured health and mana orbs
+- Integrated itsmars CC0 Health Orb base layers and the user-supplied 1.1 dark border. Preserved original archives, provenance/license and hashes; added a reproducible preparation script.
+- Replaced CSS gradient spheres with actual liquid, glass, shadow, frame and pedestal images. Resource values clip the liquid without scaling its texture; accessible meter values track current/max resources.
+- Preloaded UI textures with startup assets to prevent a second visual swap. Sized mobile controls/orbs to fit 320px screens.
+- Chrome verified texture loading, mana use/refill, desktop and mobile screenshots, and no 320px horizontal overflow. `npm run verify` passed all 10 tests, combat harness and build.
+
 ## Compact mobile quest
 - At widths up to 900px, show only the kill objective by default. The quest button expands/collapses details and exposes its state via aria-expanded; desktop keeps the full panel and hide/show toggle.
 - At phone widths, the objective is a short top strip with the location title below it. Viewport changes reset the appropriate layout.

@@ -266,34 +266,55 @@ footer {
 }
 
 .orb {
-    width: 78px;
-    height: 78px;
-    border: 5px ridge #645c49;
-    border-radius: 50%;
-    overflow: hidden;
+    width: 92px;
+    height: 92px;
+    flex-shrink: 0;
     position: relative;
-    background: #160f10;
-    box-shadow: 0 0 0 3px #12130e,0 0 0 4px #514b38;
+    isolation: isolate;
 }
 
-.orb>div {
+.orb::before {
+    content: '';
     position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 35% 25%,#dd574b,#8b191d 53%,#320c10);
+    inset: auto 0 0;
+    height: 47%;
+    background: url('../public/assets/ui/orb-base.png') center / 100% 100% no-repeat;
 }
 
-.orb:after {
+.orb::after {
     content: '';
     position: absolute;
     inset: 0;
-    border-radius: 50%;
-    box-shadow: inset -8px -7px 15px #000a,inset 6px 5px 8px #ffe5c32a;
+    pointer-events: none;
+    background: url('../public/assets/ui/orb-border.png') center / contain no-repeat;
 }
 
-.mana>div {
-    background: radial-gradient(circle at 35% 25%,#629ebd,#254978 53%,#10203d);
+.orb-glass {
+    position: absolute;
+    inset: 4.35%;
+    overflow: hidden;
+    border-radius: 50%;
+    background: #101112 url('../public/assets/ui/orb-empty.png') center / cover;
+}
+
+.orb-glass::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: url('../public/assets/ui/orb-glass.png') center / cover,
+        url('../public/assets/ui/orb-shadow.png') center / cover;
+}
+
+.orb-liquid {
+    position: absolute;
+    inset: 0;
+    background: url('../public/assets/ui/orb-health.png') center / cover;
+    clip-path: inset(0 0 0 0);
+}
+
+.mana .orb-liquid {
+    background-image: url('../public/assets/ui/orb-mana.png');
 }
 
 .character {
@@ -458,8 +479,8 @@ footer {
         gap: 8px;
     }
     .orb {
-        width: 62px;
-        height: 62px;
+        width: 72px;
+        height: 72px;
     }
     .skills button {
         width: 62px;
@@ -492,7 +513,21 @@ footer {
         display: none;
     }
     footer {
-        gap: 17px;
+        gap: 10px;
+    }
+    .orb {
+        width: 64px;
+        height: 64px;
+    }
+    .skills {
+        gap: 6px;
+    }
+    .skills button {
+        width: 52px;
+    }
+    .skills small {
+        font-size: 8px;
+        white-space: nowrap;
     }
     .controls span:nth-child(2) {
         display: none;

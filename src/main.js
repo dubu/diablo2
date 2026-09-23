@@ -285,8 +285,13 @@ function updateUI() {
     const p = state.player;
     $('health').textContent = `${Math.ceil(p.hp)} / ${p.maxHp}`;
     $('mana').textContent = `${Math.floor(p.mana)} / ${p.maxMana}`;
-    $('healthFill').style.height = p.hp / p.maxHp * 100 + '%';
-    $('manaFill').style.height = p.mana / p.maxMana * 100 + '%';
+    $('healthFill').style.clipPath = `inset(${100 - p.hp / p.maxHp * 100}% 0 0 0)`;
+    $('manaFill').style.clipPath = `inset(${100 - p.mana / p.maxMana * 100}% 0 0 0)`;
+    for (const [selector, value, max] of [['.health', p.hp, p.maxHp], ['.mana', p.mana, p.maxMana]]) {
+        const meter = document.querySelector(selector);
+        meter.setAttribute('aria-valuenow', String(Math.ceil(value)));
+        meter.setAttribute('aria-valuemax', String(max));
+    }
     $('kills').textContent = `${state.kills} / 12`;
     $('questProgress').style.width = state.kills / 12 * 100 + '%';
     $('gold').textContent = state.gold;

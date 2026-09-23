@@ -57,6 +57,26 @@
       "status": "user-supplied-and-integrated",
       "sourceFile": "assets/source/fire-large.png",
       "sha256": "15c3d00d7a75e5575d68bf7ee85f2ffd61a44bc467ebfe0b883303f76e57b8ba"
+    },
+    {
+      "id": "itsmars-orbs",
+      "catalogName": "Health Orb + Health Orb 1.1",
+      "source": "https://opengameart.org/node/65078",
+      "credit": "itsmars",
+      "license": "CC0-1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "status": "integrated",
+      "modifications": "Tinted grayscale fill red/blue; combined base layers with 1.1 dark border.",
+      "sourceArchives": [
+        {
+          "file": "assets/source/orbs/itsmars-orb-base.zip",
+          "sha256": "73b8254ff9b01aa0ded76aa9af0a80a6ad3d01d6bebbcf02b9ba243aea19481b"
+        },
+        {
+          "file": "assets/source/orbs/itsmars-orb-1.1.zip",
+          "sha256": "ef290a631e15a44271efdecb76eeaf90d510b04e5cf25610989db15d8f3e4d70"
+        }
+      ]
     }
   ]
 }
