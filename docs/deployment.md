@@ -7,7 +7,7 @@
 ## 준비된 구성
 
 - `.github/workflows/pages.yml`: PR에서 검증/빌드, main push 또는 main 수동 실행에서 배포.
-- `npm run verify`: 구문 검사 + 9개 테스트 + 결정적 전투 하네스 + 정적 빌드.
+- `npm run verify`: 구문 검사 + 10개 테스트 + 결정적 전투 하네스 + 정적 빌드.
 - `dist/`: index.html, src/, public/, .nojekyll만 포함. Codex 작업 로그와 개발 문서는 미포함.
 - 상대 경로를 사용하므로 계정 루트 사이트, `/diablo2/`, 다른 저장소명 모두 동일한 산출물 사용.
 - Node는 개발/CI 도구용이며 배포된 게임은 브라우저에서만 실행.

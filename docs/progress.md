@@ -1,5 +1,14 @@
 # Development evidence · 2026-09-23
 
+## Fire wave visual improvement
+- Performance fix: prebuild eight small flame textures and one ground-light texture at startup; reuse them with `drawImage` instead of applying 56 live shadows/gradients each frame. Cache size is fixed and independent of cast count.
+- Same-machine headless Chrome at 1280×800, DPR 2: isolated drawing plus forced pixel readback median improved from 274.2 ms to 12.1 ms; full-game requestAnimationFrame median improved from 133.3 ms to 16.7 ms (p95 150 → 83.3 ms). These are local samples, not a cross-device FPS guarantee.
+- Replaced the simple Q ellipse with expanding flame tongues, drifting embers and additive ground illumination. Flames are split behind/in front of actors and fade over 0.85 seconds.
+- Shared the existing 3.6 world-unit attack radius with rendering. Damage, mana cost and cooldown remain unchanged; lingering visuals cause no extra damage.
+- Original fire sheet retrieval was blocked by HTTP 403/site security verification. This release uses project-authored Canvas effects, not imported fire artwork.
+- `npm run verify` passed 10 tests, combat harness and static build. Added range and lingering-effect regression coverage.
+- Actual Chrome verified actor loading, Q keyboard cast, mana consumption, pause, restart, effect expiry and desktop/narrow rendering with no page errors. Screenshots were inspected locally. Narrow-screen quest panel overlap is a pre-existing limitation.
+
 ## Public GitHub Pages release
 - Pushed initial commit `9b7fcf8` to `dubu/diablo2` main. Changed the repository from private to public with explicit user approval because the current plan rejected Pages on the private repository.
 - Enabled workflow-based Pages. Build and deployment succeeded: https://github.com/dubu/diablo2/actions/runs/35871064855

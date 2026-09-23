@@ -1,5 +1,7 @@
 # Architecture
 
+`src/fire.js` renders image-independent Canvas flames, embers and ground light using simulation effect lifetime and the shared fire radius without consuming combat randomness.
+
 Zero runtime dependencies. Node 22+ serves native ES modules; Canvas 2D draws the world.
 
 - src/engine.js: seeded world, clamped delta time, movement, enemy pursuit, combat, mana, potion, XP, loot, terminal states. Coordinates are world-space.

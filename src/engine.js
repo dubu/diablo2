@@ -1,5 +1,7 @@
 /** 게임 규칙과 상태 갱신. DOM이나 이미지 없이 테스트할 수 있는 모듈입니다. */
 export const LIMIT = 18;
+export const FIRE_RANGE = 3.6;
+export const FIRE_DURATION = 0.85;
 
 // 프로토타입을 오래 플레이하기 위한 임시 쉬움 설정입니다.
 export const BALANCE = Object.freeze({
@@ -95,11 +97,11 @@ export function action(state, type) {
     if (!['attack', 'fire'].includes(type)) return false;
 
     const isFire = type === 'fire';
-    const range = isFire ? 3.6 : 1.65;
+    const range = isFire ? FIRE_RANGE : 1.65;
     const damage = isFire ? 38 : 24;
     if (isFire) player.mana -= 18;
     player.cooldown = isFire ? 0.75 : 0.35;
-    state.effects.push({ x: player.x, y: player.y, life: 0.4, type });
+    state.effects.push({ x: player.x, y: player.y, life: isFire ? FIRE_DURATION : 0.4, type });
 
     // 현재 공격은 바라보는 방향과 관계없이 사거리 안의 모든 적에게 적용됩니다.
     for (const enemy of state.enemies) {

@@ -1,10 +1,12 @@
 import { spriteAssets, loadSprites, drawSprite } from './sprites.js';
+import { drawFire, prepareFire } from './fire.js';
 import { createGame, step, action, collect, random } from './engine.js';
 
 // DOM 참조와 그리기 컨텍스트입니다. 게임 규칙은 engine.js가 담당합니다.
 const $ = id => document.getElementById(id);
 const canvas = $('game');
 const ctx = canvas.getContext('2d');
+prepareFire();
 let state = createGame();
 let paused = false;
 let target = null;
@@ -217,9 +219,13 @@ function drawActors() {
 
 function drawEffects() {
     for (const e of state.effects) {
+        if (e.type === 'fire') {
+            drawFire(ctx, e, project, scale, true);
+            continue;
+        }
         const p = project(e.x, e.y), r = (1 - e.life / 0.4) * 70 * scale + 15;
-        ctx.strokeStyle = e.type === 'fire' ? '#ffa74bb8' : e.type === 'hurt' ? '#c03636' : '#ede4b8';
-        ctx.lineWidth = e.type === 'fire' ? 5 : 2;
+        ctx.strokeStyle = e.type === 'hurt' ? '#c03636' : '#ede4b8';
+        ctx.lineWidth = 2;
         ctx.beginPath();
         ctx.ellipse(p.x, p.y - 10 * scale, r, r * 0.5, 0, 0, 7);
         ctx.stroke();
@@ -250,6 +256,9 @@ function render() {
     drawGround();
     drawScenery();
     drawLoot();
+    for (const effect of state.effects) {
+        if (effect.type === 'fire') drawFire(ctx, effect, project, scale, false);
+    }
     drawActors();
     drawEffects();
     drawDestination();
