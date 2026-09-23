@@ -31,7 +31,7 @@ npm run codex:task -- "화염 파동 범위와 밸런스 개선"
 ## 구현 범위와 에셋 상태
 
 등각 시점 수도원, 추적 AI, 보스, 근접/범위 공격, 체력/마나/회복약, 골드/경험치, 소지품, 퀘스트, 승패/재시작, 반응형 HUD.
-**원본 Diablo II 에셋 5종을 적용했습니다**: 바바리안, 폴른 샤먼, 활을 든 해골, 대장장이, 수도원 바닥. 로컬 애니메이션 시트로 로딩하며 벽·기둥·HUD·효과는 아직 자체 그래픽입니다. 출처와 크레딧은 docs/assets.md와 public/assets/catalog.json에 기록했습니다. 장비 장착·저장·장애물 충돌은 아직 구현하지 않았습니다.
+**원본 Diablo II 에셋 6종을 적용했습니다**: 바바리안, 폴른 샤먼, 활을 든 해골, 대장장이, 수도원 바닥, 화염. 로컬 애니메이션 시트로 로딩하며 벽·기둥·HUD·불티·잔광은 자체 그래픽입니다. 출처와 크레딧은 docs/assets.md와 public/assets/catalog.json에 기록했습니다. 장비 장착·저장·장애물 충돌은 아직 구현하지 않았습니다.
 
 Codex 하네스는 AGENTS.md, 작업 템플릿, CLI 실행기, 결정적 시뮬레이션, 검증 리포트로 구성됩니다.
 공식 참고: https://learn.chatgpt.com/docs/agent-configuration/agents-md 및 https://learn.chatgpt.com/docs/non-interactive-mode

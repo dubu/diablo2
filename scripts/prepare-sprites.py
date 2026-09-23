@@ -25,6 +25,9 @@ for name, regions in REGIONS.items():
     atlas.paste(frame,(col*w,row*h))
   filename=f'{name}-{action}.png';atlas.save(ROOT/'public/assets/sprites'/filename,optimize=True)
   entries[action]={'file':filename,'width':w,'height':h,'frames':cols,'directions':rows,'anchorX':w/2,'anchorY':h-5}
+  # Attack cells include 34px of empty space below the feet; cell bottom is not ground.
+  if name == 'barbarian' and action == 'attack':
+   entries[action]['anchorY'] = 108
  manifest[name]=entries
 floor=Image.open(ROOT/'assets/source/monastery.png').convert('RGBA')
 floor.putdata([(r,g,b,0 if (r,g,b)==(255,0,255) else a) for r,g,b,a in floor.getdata()])

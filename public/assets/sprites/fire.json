@@ -1,0 +1,20 @@
+[
+  {
+    "file": "fire-1.png",
+    "width": 46,
+    "height": 76,
+    "frames": 20
+  },
+  {
+    "file": "fire-2.png",
+    "width": 69,
+    "height": 101,
+    "frames": 20
+  },
+  {
+    "file": "fire-3.png",
+    "width": 118,
+    "height": 187,
+    "frames": 20
+  }
+]

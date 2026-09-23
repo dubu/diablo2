@@ -1,4 +1,4 @@
-/** 자체 Canvas 화염 연출. 외부 이미지 없이 동작하며 전투 난수를 사용하지 않습니다. */
+/** 원본 화염 시트와 캐시된 대체 효과. 전투 난수를 사용하지 않습니다. */
 import { FIRE_RANGE, FIRE_DURATION } from './engine.js';
 
 const TAU = Math.PI * 2;
@@ -9,6 +9,32 @@ const noise = n => {
 
 // 작은 화염 텍스처 8장과 지면광을 한 번만 생성합니다. 매 프레임 블러를 계산하지 않습니다.
 let textures;
+let originalFlames;
+let loading;
+export function loadFire() {
+    if (loading) return loading;
+    const base = new URL('../public/assets/sprites/', import.meta.url);
+    loading = (async () => {
+        const response = await fetch(new URL('fire.json', base), { signal: AbortSignal.timeout(15000) });
+        if (!response.ok) throw new Error('화염 목록 로딩 실패');
+        const specs = await response.json();
+        const loaded = await Promise.all(specs.map(async spec => {
+            const image = new Image();
+            image.src = new URL(spec.file, base).href;
+            await new Promise((resolve, reject) => {
+                const timer = setTimeout(() => reject(new Error('화염 로딩 시간 초과')), 15000);
+                image.decode().then(() => { clearTimeout(timer); resolve(); }, error => { clearTimeout(timer); reject(error); });
+            });
+            if (image.naturalWidth !== spec.width * spec.frames || image.naturalHeight !== spec.height) {
+                throw new Error('화염 시트 크기 오류');
+            }
+            return { ...spec, image };
+        }));
+        originalFlames = loaded;
+        return true;
+    })().catch(() => false);
+    return loading;
+}
 export function prepareFire() {
     if (textures) return;
     const flames = Array.from({ length: 8 }, (_, frame) => {
@@ -64,8 +90,9 @@ export function drawFire(ctx, effect, project, scale, foreground) {
     }
 
     // 같은 월드 반경을 등각 투영해 실제 공격 범위와 일치시킵니다.
-    for (let i = 0; i < 56; i++) {
-        const angle = i / 56 * TAU;
+    const count = originalFlames ? 36 : 56;
+    for (let i = 0; i < count; i++) {
+        const angle = i / count * TAU;
         const front = Math.cos(angle) + Math.sin(angle) >= 0;
         if (front !== foreground) continue;
         const jitter = 0.86 + noise(i) * 0.14;
@@ -74,12 +101,22 @@ export function drawFire(ctx, effect, project, scale, foreground) {
         const flicker = 0.8 + Math.sin(age * 35 + i * 2.7) * 0.2;
         const height = (23 + noise(i + 91) * 33) * scale * flicker * (1 - progress * 0.6);
         const width = (9 + noise(i + 4) * 7) * scale;
-        const frame = (Math.floor(age * 24) + i * 3) % textures.flames.length;
         ctx.globalAlpha = fade;
-        ctx.drawImage(textures.flames[frame], point.x - width * 2,
-            point.y - height * 80 / 68, width * 4, height * 96 / 68);
+        if (originalFlames) {
+            const spec = originalFlames[i % originalFlames.length];
+            const frame = (Math.floor(age * 25) + i * 7) % spec.frames;
+            const h = height * 1.65, w = h * spec.width / spec.height;
+            ctx.globalCompositeOperation = 'source-over';
+            ctx.drawImage(spec.image, frame * spec.width, 0, spec.width, spec.height,
+                point.x - w / 2, point.y - h, w, h);
+        } else {
+            const frame = (Math.floor(age * 24) + i * 3) % textures.flames.length;
+            ctx.drawImage(textures.flames[frame], point.x - width * 2,
+                point.y - height * 80 / 68, width * 4, height * 96 / 68);
+        }
     }
     ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = 'lighter';
 
     // 불티는 각 입자의 고정된 위상으로 이동하므로 정지 중에도 흔들리지 않습니다.
     for (let i = 0; i < 44; i++) {

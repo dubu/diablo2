@@ -1,6 +1,6 @@
 # Architecture
 
-`src/fire.js` renders image-independent Canvas flames, embers and ground light using simulation effect lifetime and the shared fire radius without consuming combat randomness.
+`src/fire.js` loads three original fire atlases and renders them with cached Canvas embers/ground light and a procedural fallback, without consuming combat randomness.
 
 Zero runtime dependencies. Node 22+ serves native ES modules; Canvas 2D draws the world.
 
@@ -34,4 +34,4 @@ Walls and pillars are decorative; no obstacle collision or pathfinding. Level is
 - .github/workflows/pages.yml: read-only PR verification; main-only deployment job with Pages/OIDC permissions.
 
 ## Sprite rendering
-`src/sprites.js` loads prepared PNG atlases and frame metadata from `public/assets/sprites/`. The runtime selects idle/walk/attack/death frames independently of deterministic combat state. Original source sheets live in `assets/source/`; Pillow preparation is optional offline tooling, not a deployment dependency. Sprite-load failures are visible in the HUD and retain the procedural fallback.
+`src/sprites.js` loads prepared PNG atlases and frame metadata from `public/assets/sprites/`. The runtime selects idle/walk/attack/death frames independently of deterministic combat state. Original source sheets live in `assets/source/`; Pillow preparation is optional offline tooling, not a deployment dependency. The initial loading screen covers the game until actor/floor assets are ready. Simulation and gameplay input stay stopped during loading; failure shows a retry button instead of placeholder actors. Fire loading is independent and can fall back to cached procedural effects. Image/manifest loading has 15-second timeouts.

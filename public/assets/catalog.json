@@ -47,6 +47,16 @@
       "status": "downloaded-and-integrated",
       "sourceFile": "assets/source/monastery.png",
       "sha256": "b4903080180e98c3a7531a33494617546623a5d4cb1a3557490c96c74da65a5d"
+    },
+    {
+      "id": "fire-large",
+      "catalogName": "Fire (Large)",
+      "source": "https://www.spriters-resource.com/pc_computer/diablo2diablo2lordofdestruction/asset/78100/",
+      "download": "https://www.spriters-resource.com/media/assets/75/78100.png?updated=1755474266",
+      "credit": "sutinoer",
+      "status": "user-supplied-and-integrated",
+      "sourceFile": "assets/source/fire-large.png",
+      "sha256": "15c3d00d7a75e5575d68bf7ee85f2ffd61a44bc467ebfe0b883303f76e57b8ba"
     }
   ]
 }

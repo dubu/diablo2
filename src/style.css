@@ -481,3 +481,20 @@ footer {
         display: none;
     }
 }
+/* 첫 페인트부터 표시하고, 원본 에셋을 모두 준비한 뒤 게임을 보여줍니다. */
+.loading-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    background: #111710;
+    color: #d8c89d;
+}
+.loading-screen[hidden] {
+    display: none;
+}
+.loading-screen p {
+    color: #9c9e8b;
+}

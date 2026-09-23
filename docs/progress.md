@@ -1,5 +1,14 @@
 # Development evidence · 2026-09-23
 
+## Original fire, grounded attacks and startup loading
+- Integrated user-supplied Fire (Large): three transparent atlases, 60 frames; source, uploader, URL and hash preserved. Validated every frame is nonempty and no opaque magenta/teal background remains.
+- Kept cached rendering; local forced-readback render median was 13.1 ms with original flames. No per-frame blur was reintroduced.
+- Corrected Barbarian attack ground anchor from Y=137 to Y=108 after inspecting all 16 direction rows. Space attack screenshot confirms feet stay at ground level.
+- Added a first-paint loading screen and blocked simulation/game input until assets are ready. Actor-loading failure shows retry; fire-loading failure uses cached fallback.
+- Chrome checks passed: slow loading without placeholder drawing or simulation, failed image/retry, Space attack, Q fire, pause/restart, desktop/narrow display, and missing-fire fallback. No page errors.
+- `npm run verify` passed all 10 tests, deterministic harness and build.
+
+
 ## Fire wave visual improvement
 - Performance fix: prebuild eight small flame textures and one ground-light texture at startup; reuse them with `drawImage` instead of applying 56 live shadows/gradients each frame. Cache size is fixed and independent of cast count.
 - Same-machine headless Chrome at 1280×800, DPR 2: isolated drawing plus forced pixel readback median improved from 274.2 ms to 12.1 ms; full-game requestAnimationFrame median improved from 133.3 ms to 16.7 ms (p95 150 → 83.3 ms). These are local samples, not a cross-device FPS guarantee.

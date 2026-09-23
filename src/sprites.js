@@ -11,8 +11,9 @@ const ASSET_BASE_URL = new URL('../public/assets/sprites/', import.meta.url);
 function loadImage(url) {
     return new Promise((resolve, reject) => {
         const image = new Image();
-        image.onload = () => resolve(image);
-        image.onerror = () => reject(new Error(`에셋 로딩 실패: ${url.pathname}`));
+        const timer = setTimeout(() => reject(new Error('에셋 로딩 시간 초과')), 15000);
+        image.onload = () => { clearTimeout(timer); resolve(image); };
+        image.onerror = () => { clearTimeout(timer); reject(new Error(`에셋 로딩 실패: ${url.pathname}`)); };
         image.src = url.href;
     });
 }
@@ -30,7 +31,7 @@ async function loadActorAnimations(name, animations) {
 /** 모든 캐릭터와 바닥 이미지가 준비된 뒤에만 원본 렌더링을 활성화합니다. */
 export async function loadSprites() {
     try {
-        const response = await fetch(new URL('manifest.json', ASSET_BASE_URL));
+        const response = await fetch(new URL('manifest.json', ASSET_BASE_URL), { signal: AbortSignal.timeout(15000) });
         if (!response.ok) throw new Error('스프라이트 목록을 불러오지 못했습니다.');
         const manifest = await response.json();
 

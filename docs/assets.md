@@ -29,7 +29,11 @@ Pillow is only needed for atlas preparation, not for normal Node build/CI or pla
 
 ## Fire wave rendering
 
-The Q wave uses project-authored Canvas artwork in `src/fire.js`: animated flame tongues, rising embers and additive ground light. It is not an imported Diablo II fire sprite. Fire (Large), asset 78100, was located in the source catalog, but direct downloads returned HTTP 403 and a fresh browser remained on site security verification on 2026-09-23. No fire sheet was imported. The effect has no image dependency and remains available if actor images fail to load.
+The Q wave now uses the user-supplied **Fire (Large)** sheet (TSR asset 78100, uploader sutinoer). The original download is https://www.spriters-resource.com/media/assets/75/78100.png?updated=1755474266 and the preserved source is `assets/source/fire-large.png`; SHA-256 is recorded in the catalog. This supersedes the earlier automated-download blocker.
+
+`python3 scripts/prepare-fire.py` removes exact magenta/teal background colors and extracts three rows of 20 frames each. `fire.json` records the three atlas grids; `src/fire.js` loads them once and reuses them with `drawImage`, without per-frame blur. Embers and ground light remain project-authored. If the fire images fail, cached procedural flames remain available.
+
+Barbarian attack frames use ground anchor Y=108 rather than the cell-bottom default 137, which included empty space below the feet. The extraction script preserves this correction on rebuild.
 
 ## Scope
 Actual original sprites now render the player, every enemy type and floor. Walk/idle/attack frames are selected from real sheets; skeleton and Fallen also use corpse frames. Barbarian/Smith corpse visuals remain a flattened idle frame fallback. Camera follows the player with a minimum zoom so sprites stay legible in a narrow window.

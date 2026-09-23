@@ -1,5 +1,5 @@
 import { spriteAssets, loadSprites, drawSprite } from './sprites.js';
-import { drawFire, prepareFire } from './fire.js';
+import { drawFire, prepareFire, loadFire } from './fire.js';
 import { createGame, step, action, collect, random } from './engine.js';
 
 // DOM 참조와 그리기 컨텍스트입니다. 게임 규칙은 engine.js가 담당합니다.
@@ -7,6 +7,7 @@ const $ = id => document.getElementById(id);
 const canvas = $('game');
 const ctx = canvas.getContext('2d');
 prepareFire();
+let gameReady = false;
 let state = createGame();
 let paused = false;
 let target = null;
@@ -17,9 +18,22 @@ let scale = 1;
 const facing = new Map();
 const positions = new Map();
 const rng = random(42), decor = Array.from({length: 230}, () => ({x: rng() * 18, y: rng() * 18, v: rng()}));
-loadSprites().then(assets => {
-    $('assetStatus').textContent = assets.ready ? 'DIABLO II 원본 스프라이트 적용' : '에셋 로딩 실패 · 임시 그래픽';
-    if (assets.error) $('toast').textContent = assets.error;
+$('loadingRetry').onclick = () => location.reload();
+Promise.all([loadSprites(), loadFire()]).then(([assets, fireReady]) => {
+    if (!assets.ready) {
+        $('loadingTitle').textContent = '에셋을 불러오지 못했습니다';
+        $('loadingText').textContent = '연결을 확인한 뒤 다시 시도해주세요.';
+        $('loadingRetry').hidden = false;
+        $('assetStatus').textContent = '에셋 로딩 실패';
+        return;
+    }
+    gameReady = true;
+    keys.clear();
+    last = performance.now();
+    render();
+    $('loadingScreen').hidden = true;
+    $('assetStatus').textContent = 'DIABLO II 원본 스프라이트 적용';
+    if (!fireReady) $('toast').textContent = '화염 에셋 로딩 실패 · 기본 효과 사용';
 });
 
 function resize() {
@@ -250,6 +264,7 @@ function drawVignette() {
 
 /** 바닥 → 배경 구조물 → 전리품 → 캐릭터 → 효과 → HUD 순서입니다. */
 function render() {
+    if (!gameReady) return;
     ctx.clearRect(0, 0, width, height);
     ctx.fillStyle = '#171e18';
     ctx.fillRect(0, 0, width, height);
@@ -294,7 +309,7 @@ function updateUI() {
 }
 
 function perform(type) {
-    if (paused) return;
+    if (!gameReady || paused) return;
     const ok = action(state, type);
     if (state.status === 'won') {
         state.loot.forEach(l => {
@@ -315,6 +330,7 @@ function perform(type) {
 }
 
 function togglePause() {
+    if (!gameReady) return;
     if (state.status === 'playing') paused = !paused;
     keys.clear();
 }
@@ -346,6 +362,7 @@ $('journalButton').onclick = () => {
 };
 // 이동과 Space는 누른 상태를 매 프레임 읽습니다. Q/1 등은 최초 입력만 처리합니다.
 function handleKeyDown(event) {
+    if (!gameReady) return;
     if (['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.code)) event.preventDefault();
     keys.add(event.code);
     if (event.repeat) return;
@@ -364,7 +381,7 @@ window.addEventListener('blur', () => {
 });
 /** 클릭 좌표를 월드 좌표로 되돌려 목적지를 지정하거나 가까운 적을 공격합니다. */
 function handlePointerDown(event) {
-    if (paused || state.status !== 'playing') return;
+    if (!gameReady || paused || state.status !== 'playing') return;
     const r = canvas.getBoundingClientRect(),
         px = (event.clientX - r.left - width * 0.49) / (32 * scale) + state.player.x - state.player.y,
         py = (event.clientY - r.top - height * 0.53) / (16 * scale) + state.player.x + state.player.y;
@@ -402,7 +419,7 @@ function readMovementInput() {
 function frame(time) {
     const dt = Math.min((time - last) / 1000, 0.05);
     last = time;
-    if (!paused) {
+    if (gameReady && !paused) {
         const movement = readMovementInput();
         step(state, movement, dt);
         if (keys.has('Space')) perform('attack');
